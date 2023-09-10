@@ -33,14 +33,14 @@ class Connector:
 
     def insert(self, data):
         """Запись данных в файл с сохранением структуры и исходных данных"""
-        with open(self.__data_file, 'r') as file:
+        with open(self.__data_file, 'r', encoding="UTF-8") as file:
             file_data = json.load(file)
-        with open(self.__data_file, 'w') as file:
+        with open(self.__data_file, 'w', encoding="UTF-8") as file:
             json.dump(file_data + data, file, indent=4, ensure_ascii=False)
 
     def select(self, query):
         """Выбор данных из файла с применением фильтрации query содержит словарь"""
-        with open(self.__data_file, 'r') as file:
+        with open(self.__data_file, 'r', encoding="UTF-8") as file:
             file_data = json.load(file)
 
         if not query:

@@ -59,9 +59,22 @@ class Vacancy:
         self.description = description
         self.сurrency = сurrency
 
+    def res(self):
+        return {"name": self.name,
+                "url": self.url,
+                "price": self.salary,
+                "description": self.description,
+                "сurrency": self.сurrency,
+                }
+
     def __lt__(self, other):
         """Для оператора меньше <"""
-        pass
+        if other.salary is None:
+            return False
+        if self.salary is None:
+            return True
+
+        return self.salary < other.salary
 
     def __gt__(self, other):
         """Для оператора больше >"""
@@ -77,4 +90,13 @@ class Vacancy:
 class HHVacancy(Vacancy):
 
     def __str__(self):
-        return f'HH: {self.name}, зарплата: {self.salary} руб/мес'
+        return f'HH: {self.name}, зарплата: {self.salary} {self.сurrency}/мес'
+
+    def __repr__(self):
+        return f'HH: {self.name}, зарплата: {self.salary} {self.сurrency}/мес'
+
+
+class SJVacancy(Vacancy):
+
+    def __str__(self):
+        return f'SJ: {self.name}, зарплата: {self.salary} {self.сurrency}/мес'
